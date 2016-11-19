@@ -44,6 +44,10 @@ def logger
     log_dir = File.dirname(log_path)
     Dir.mkdir(log_dir) unless Dir.exist?(log_dir)
     logger = Logger.new(log_path, 5, 1024000)
+    logger.datetime_format = '%Y-%m-%d %H:%M:%S'
+    logger.formatter = proc do |severity, datetime, progname, msg|
+      "#{datetime}: #{msg}\n"
+    end
     logger.level = Logger::INFO
     logger
   end
