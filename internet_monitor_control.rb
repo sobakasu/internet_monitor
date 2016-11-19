@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 ### BEGIN INIT INFO
-# Provides:       monitor_internet
+# Provides:       internet_monitor
 # Required-Start: $local_fs
 # Required-Stop:
 # Default-Start:  2 3 4 5
@@ -15,7 +15,7 @@ require 'daemons'
 
 file = __FILE__
 file = File.readlink(file) if File.symlink?(file)
-path = File.join(File.dirname(file), 'monitor_internet.rb')
+path = File.join(File.dirname(file), 'internet_monitor.rb')
 
 options = {
   backtrace: true,
