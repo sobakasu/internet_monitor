@@ -114,7 +114,7 @@ def update_statistics
   update_dc_statistics(3, Time.now.beginning_of_week)  # this week
 end
 
-def update_status(status)
+def update_status(status, dc_time)
   return if status == @status
 
   logger.info("internet status changed to #{status}")
@@ -133,7 +133,7 @@ def update_status(status)
 
   when :disconnected
     # disconnected, save disconnection time
-    @dc_time = Time.now
+    @dc_time = dc_time
   end
 
   @status = status
@@ -142,6 +142,7 @@ end
 def run
   fail_count = 0
   status = nil
+  dc_time = nil
 
   loop do
     sleep(config["ping_delay"] || 5)
@@ -149,12 +150,14 @@ def run
     if connected?
       fail_count = 0
       status = :connected
+      dc_time = nil
     else
       ping_count = config["ping_count"] || 3
       fail_count += 1
+      dc_time ||= Time.now
       status = :disconnected if fail_count > ping_count
     end
-    update_status(status)
+    update_status(status, dc_time)
   end
 end
 
