@@ -1,0 +1,14 @@
+# The spreadsheet in google drive
+# e.g. the first worksheet of
+# https://docs.google.com/spreadsheets/d/1NCAby12-fz8Ak6z2VeMOwOvu5LrR5OH8rrQ8c307t4X
+spreadsheet_key: 1NCAby12-fz8Ak6z2VeMOwOvu5LrR5OH8rrQ8c307t4X
+
+# The host to ping to check that the internet connection is alive
+ping_host: example.com
+
+# if a ping to ping_host fails ping_count times in a row, the connection
+# is marked as disconnected
+ping_count: 3
+
+# wait this many seconds between pings
+ping_delay: 5
