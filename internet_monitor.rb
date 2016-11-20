@@ -69,14 +69,6 @@ def connected?
   end
 
   @ping.ping?
-  # try to ping three times
-  ping_count = config["ping_count"] || 5
-  ping_count.times do
-    return true if @ping.ping?
-  end
-
-  # internet disconnected if ping failed three times
-  false
 end
 
 # return number of disconnections and disconnected time since given date.
